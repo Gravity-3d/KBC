@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "mode": "image",
+    "question": "Who are these people?",
+    "img1": "/static/top_1.png",
+    "img2": "/static/center_1.png",
+    "img3": "/static/bottom_1.png",
+    "options": {
+      "A": "Jimmy Shergil, Dharmendra, KK Menon",
+      "B": "Shahrukh Khan, Salman Khan, Amir Khan",
+      "C": "Sunny Deol, Bobby Deol, Ranbeer Kapoor",
+      "D": "Ranveer Singh, Govinda, Chunky Pandey"
+    },
+    "correct": "A",
+    "followup": "/static/videoplayback.mp4"
+  },
+  {
+    "id": 2,
+    "mode": "audio",
+    "question": "Identify the song playing",
+    "audio": "/static/giorno_theme.mp3",
+    "options": {
+      "A": "JoJo's Bizzare Adventure",
+      "B": "Hotel California",
+      "C": "Stairway to Heaven",
+      "D": "Imagine"
+    },
+    "correct": "A",
+    "followup": "/static/jojofollow.mp4"
+  },
+  {
+    "id": 3,
+    "mode": "rapid",
+    "question": "What is the capital of France?",
+    "options": {
+      "A": "London",
+      "B": "Berlin",
+      "C": "Paris",
+      "D": "Madrid"
+    },
+    "correct": "C"
+  },
+  {
+    "id": 4,
+    "mode": "rapid",
+    "question": "Who wrote 'Romeo and Juliet'?",
+    "options": {
+      "A": "Charles Dickens",
+      "B": "William Shakespeare",
+      "C": "Jane Austen",
+      "D": "Mark Twain"
+    },
+    "correct": "B"
+  },
+  {
+    "id": 5,
+    "mode": "rapid",
+    "question": "What is the largest planet in our solar system?",
+    "options": {
+      "A": "Mars",
+      "B": "Saturn",
+      "C": "Jupiter",
+      "D": "Neptune"
+    },
+    "correct": "C"
+  }
+]

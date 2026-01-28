@@ -1,0 +1,5 @@
+Flask~=3.1.2
+Flask-SocketIO~=5.6.0
+flask-cors~=6.0.2
+matplotlib~=3.10.8
+pillow~=12.1.0
