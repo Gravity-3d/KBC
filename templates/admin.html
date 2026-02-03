@@ -537,6 +537,12 @@
             line-height: 1;
         }
 
+        /* Larger timer for rapid mode */
+        .stage-timer.rapid-timer {
+            font-size: 220px;
+            text-shadow: 0 0 100px rgba(201, 162, 39, 0.4);
+        }
+
         .stage-timer.danger {
             color: var(--danger);
             animation: timerUrgent 0.6s ease-in-out infinite;
@@ -646,6 +652,12 @@
             left: 0;
             right: 0;
             padding: 24px;
+            transition: bottom 0.3s ease;
+        }
+
+        /* Move question up in rapid mode */
+        .rapid-mode .question-section {
+            bottom: 15vh;
         }
 
         .question-hexagon {
@@ -994,10 +1006,10 @@
             <div class="lifelines-top">
                 <div class="lifeline-icon" id="lifeline-50-50" onclick="useLifeline('50-50')" title="50-50">50:50</div>
                 <div class="lifeline-icon" id="lifeline-audience-poll" onclick="useLifeline('audience_poll')" title="Audience Poll">AP</div>
-                <div class="lifeline-icon" id="lifeline-phone-friend" onclick="useLifeline('phone_friend')" title="Phone a Friend">PF</div>
+                <div class="lifeline-icon" id="lifeline-phone-friend" oncli
+ck="useLifeline('phone_friend')" title="Phone a Friend">PF</div>
             </div>
         </div>
-
         <!-- Center Stage -->
         <div class="stage-area" id="stageArea">
             <!-- Content changes based on question mode -->
@@ -1064,15 +1076,18 @@
         // Generate particles for logo screen
         function createParticles() {
             const field = document.getElementById('particleField');
-            for (let i = 0; i < 80; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = (Math.random() * 8) + 's';
-                particle.style.animationDuration = (8 + Math.random() * 6) + 's';
-                particle.style.width = (2 + Math.random() * 3) + 'px';
-                particle.style.height = particle.style.width;
-                field.appendChild(particle);
+            if (field) {
+                field.innerHTML = ''; // Clear particles first to allow restart
+                for (let i = 0; i < 80; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.animationDelay = (Math.random() * 8) + 's';
+                    particle.style.animationDuration = (8 + Math.random() * 6) + 's';
+                    particle.style.width = (2 + Math.random() * 3) + 'px';
+                    particle.style.height = particle.style.width;
+                    field.appendChild(particle);
+                }
             }
         }
         createParticles();
@@ -1086,7 +1101,7 @@
         let timerPaused = false;
         let phoneTimerInterval = null;
         let phoneTimerActive = false;
-        let remainingTime = 30;
+        let remainingTime = 15; // Defaulted to 15
         let questionMode = 'rapid';
         let audioPlaying = false;
         let pollQRVisible = false;
@@ -1110,12 +1125,32 @@
         }
 
         function showLogoScreen() {
+            // Hide other screens
             document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('gameScreen').style.display = 'none';
+
+            // Show Logo Screen
             document.getElementById('logoScreen').style.display = 'flex';
+
+            // Reset animations
+            const logoImg = document.querySelector('#logoScreen img');
+            if (logoImg) {
+                logoImg.classList.remove('idle');
+                // Trigger reflow to restart animation
+                void logoImg.offsetWidth;
+            }
+
+            // Restart particles
+            createParticles();
 
             // Play opening theme
             const openingTheme = document.getElementById('openingTheme');
+            openingTheme.currentTime = 0;
             openingTheme.play();
+
+            // Reset flags
+            logoAnimationComplete = false;
+            gameStarted = false;
 
             // After 18 seconds, switch to idle animation and allow S key
             setTimeout(() => {
@@ -1133,6 +1168,10 @@
             document.getElementById('logoScreen').style.display = 'none';
             document.getElementById('gameScreen').style.display = 'block';
             gameStarted = true;
+
+            // Start playing from question 0 (or you could persist currentQuestion if desired)
+            // Typically restarting means resetting to 0
+            currentQuestion = 0;
             loadQuestion(0);
         }
 
@@ -1144,7 +1183,8 @@
 
             const response = await fetch(`/api/questions/${index}`);
             if (!response.ok) {
-                console.error('No more questions');
+                // END OF GAME - Return to Logo Screen
+                showLogoScreen();
                 return;
             }
             const question = await response.json();
@@ -1160,22 +1200,27 @@
             stageArea.innerHTML = '';
 
             if (questionMode === 'rapid') {
-                stageArea.innerHTML = '<div class="stage-timer" id="stageTimer">30</div>';
-                startTimer(30);
+                stageArea.innerHTML = '<div class="stage-timer rapid-timer" id="stageTimer">15</div>';
+                document.body.classList.add('rapid-mode');
+                startTimer(15);
+
             } else if (questionMode === 'audio') {
+                document.body.classList.remove('rapid-mode');
                 stageArea.innerHTML = `
-                    <div class="stage-timer" id="stageTimer">30</div>
+                    <div class="stage-timer" id="stageTimer">15</div>
                     <div class="stage-speaker">&#128266;</div>
                 `;
                 const audio = document.getElementById('questionAudio');
                 audio.src = question.audio;
                 audio.load();
-                startTimer(30);
+                startTimer(15);
+
             } else if (questionMode === 'image') {
+                document.body.classList.remove('rapid-mode');
                 const timerDiv = document.createElement('div');
                 timerDiv.className = 'stage-timer';
                 timerDiv.id = 'stageTimer';
-                timerDiv.textContent = '90';
+                timerDiv.textContent = '15';
 
                 const grid = document.createElement('div');
                 grid.className = 'image-grid';
@@ -1193,11 +1238,38 @@
                 stageArea.appendChild(timerDiv);
                 stageArea.appendChild(grid);
 
-                startTimer(30);
+                startTimer(15);
                 // Reveal all images at once
                 document.querySelectorAll('.image-tile').forEach(tile => {
                     tile.classList.add('revealed');
                 });
+
+            } else if (questionMode === 'video') {
+                // VIDEO MODE: 16:9 Aspect Ratio (approx 445px x 250px)
+                document.body.classList.remove('rapid-mode');
+
+                // Injecting HTML with standard YT ratio
+                stageArea.innerHTML = `
+                    <div class="stage-timer" id="stageTimer">15</div>
+                    <div id="questionVideoContainer" style="
+                        width: 445px;
+                        height: 250px;
+                        border: 2px solid #c9a227;
+                        background: rgba(201, 162, 39, 0.1);
+                        border-radius: 2px;
+                        overflow: hidden;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        box-shadow: 0 0 20px rgba(201, 162, 39, 0.3);">
+                        <video id="questionVideo" src="${question.video}" style="width: 100%; height: 100%; object-fit: cover;" autoplay></video>
+                    </div>
+                `;
+
+                // Ensure video loops if needed, or stops at end
+                const vid = document.getElementById('questionVideo');
+                if(vid) vid.volume = 1.0;
+                startTimer(15);
             }
 
             // Setup options (only for non-rapid questions)
@@ -1229,6 +1301,12 @@
             if (timerEl) {
                 timerEl.textContent = remainingTime;
                 timerEl.classList.remove('danger', 'timer-paused');
+            }
+
+            // If video mode, ensure video plays when timer starts
+            if (questionMode === 'video') {
+                const vid = document.getElementById('questionVideo');
+                if(vid) vid.play().catch(e => console.log("Autoplay blocked", e));
             }
 
             timerInterval = setInterval(() => {
@@ -1264,12 +1342,21 @@
                 }
             }
 
-            if (questionMode === 'audio') {
+            /*if (questionMode === 'audio') {
                 const audio = document.getElementById('questionAudio');
                 if (timerPaused) {
                     audio.pause();
                 } else if (audioPlaying) {
                     audio.play();
+                }
+            }*/
+
+            // Toggle video playback with timer
+            if (questionMode === 'video') {
+                const vid = document.getElementById('questionVideo');
+                if (vid) {
+                    if (timerPaused) vid.pause();
+                    else vid.play();
                 }
             }
 
@@ -1282,6 +1369,12 @@
                 timerInterval = null;
             }
             stopTickSound();
+
+            // Pause video when timer stops
+            if (questionMode === 'video') {
+                const vid = document.getElementById('questionVideo');
+                if (vid) vid.pause();
+            }
         }
 
         function playTickSound() {
@@ -1313,7 +1406,7 @@
             socket.emit('start_phone_timer');
             document.getElementById('phoneTimer').style.display = 'block';
 
-            let time = 30;
+            let time = 30; // Phone friend stays 30s as per standard
             document.getElementById('phoneTimerDisplay').textContent = time;
             document.getElementById('phoneTimerDisplay').classList.remove('danger');
 
@@ -1384,10 +1477,10 @@
                 e.preventDefault();
                 toggleTimer();
             }
-            else if (e.key === 'ArrowLeft' && answerRevealed) {
+            else if (e.key === 'ArrowLeft' && (answerRevealed || questionMode === 'rapid')) {
                 prevQuestion();
             }
-            else if (e.key === 'ArrowRight' && answerRevealed) {
+            else if (e.key === 'ArrowRight' && (answerRevealed || questionMode === 'rapid')) {
                 nextQuestion();
             }
             else if (e.key === 'r' || e.key === 'R') {
@@ -1420,6 +1513,8 @@
             const video = document.getElementById('followupVideo');
             video.pause();
             video.currentTime = 0;
+            video.src = ""; // Clear source to prevent accidental playback
+            video.load();   // Force browser to unload the video resource
 
             pollQRVisible = false;
         }
@@ -1454,6 +1549,12 @@
             if (questionMode === 'audio') {
                 const audio = document.getElementById('questionAudio');
                 audio.pause();
+            }
+
+            // Stop video on reveal
+            if (questionMode === 'video') {
+                const vid = document.getElementById('questionVideo');
+                if (vid) vid.pause();
             }
 
             const response = await fetch(`/api/questions/${currentQuestion}`);
@@ -1572,7 +1673,7 @@
         });
 
         socket.on('phone_friend_started', () => {
-            // Phone friend activated, waiting for 'S' to start timer
+            // Phone friend activated
         });
 
         socket.on('fff_winner', (data) => {

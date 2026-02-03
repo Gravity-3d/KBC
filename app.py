@@ -12,11 +12,11 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 
 # Hardcoded users database
 USERS = {
-    'user1': 'pass1',
-    'user2': 'pass2',
-    'user3': 'pass3',
-    'user4': 'pass4',
-    'user5': 'pass5'
+    'participant1': 'pass1',
+    'participant2': 'pass2',
+    'participant3': 'pass3',
+    'participant4': 'pass4',
+    'participant5': 'pass5'
 }
 
 ADMIN_PASSWORD = 'admin123'

@@ -7,62 +7,266 @@
     "img2": "/static/center_1.png",
     "img3": "/static/bottom_1.png",
     "options": {
-      "A": "Jimmy Shergil, Dharmendra, KK Menon",
-      "B": "Shahrukh Khan, Salman Khan, Amir Khan",
-      "C": "Sunny Deol, Bobby Deol, Ranbeer Kapoor",
-      "D": "Ranveer Singh, Govinda, Chunky Pandey"
+      "A": "Vinod Khanna, Yash, Nawazuddin Siddiqui",
+      "B": "Shatrughan Sinha, Allu Arjun, Manoj Bajpayee",
+      "C": "Dharmendra, Yash, KK Menon",
+      "D": "Amitabh Bachchan, Ram Charan, Irrfan Khan"
+    },
+    "correct": "C",
+    "followup": "/static/videoplayback.mp4"
+  },
+  {
+    "id": 2,
+    "mode": "image",
+    "question": "Who are these people?",
+    "img1": "/static/top_2.png",
+    "img2": "/static/center_2.png",
+    "img3": "/static/bottom_2.png",
+    "options": {
+      "A": "Dilip Kumar, Aditya Pancholi, Anurag Kashyap",
+      "B": "Raj Kapoor, Aditya Pancholi, Tigmanshu Dhulia",
+      "C": "Dev Anand, Arjun Rampal, Piyush Mishra",
+      "D": "Prithviraj Kapoor, Shiney Ahuja, Vishal Bhardwaj"
+    },
+    "correct": "B",
+    "followup": "/static/videoplayback.mp4"
+  },
+  {
+    "id": 3,
+    "mode": "image",
+    "question": "Who are these people?",
+    "img1": "/static/top_3.png",
+    "img2": "/static/center_3.png",
+    "img3": "/static/bottom_3.png",
+    "options": {
+      "A": "Vijay Raaz, Aamir Khan, Sunny Deol",
+      "B": "Johnny Lever, Ranbir Kapoor, Vinod Khanna",
+      "C": "Sanjay Mishra, Fawad Khan, Sunil Dutt",
+      "D": "Rajpal Yadav, Aamir Khan, Dharmendra"
+    },
+    "correct": "D",
+    "followup": "/static/videoplayback.mp4"
+  },
+  {
+    "id": 4,
+    "mode": "image",
+    "question": "Who are these people?",
+    "img1": "/static/top_4.png",
+    "img2": "/static/center_4.png",
+    "img3": "/static/bottom_4.png",
+    "options": {
+      "A": "Emraan Hashmi, Kareena Kapoor, Kartik Aryan",
+      "B": "Vicky Kaushal, Kareena Kapoor, Varun Dhawan",
+      "C": "Himesh Reshammiya, Karisma Kapoor, Ranbir Kapoor",
+      "D": "Ayushmann Khurrana, Katrina Kaif, Sidharth Malhotra"
     },
     "correct": "A",
     "followup": "/static/videoplayback.mp4"
   },
   {
-    "id": 2,
-    "mode": "audio",
-    "question": "Identify the song playing",
-    "audio": "/static/giorno_theme.mp3",
+    "id": 5,
+    "mode": "image",
+    "question": "Who are these people?",
+    "img1": "/static/top_5.png",
+    "img2": "/static/center_5.png",
+    "img3": "/static/bottom_5.png",
     "options": {
-      "A": "JoJo's Bizzare Adventure",
-      "B": "Hotel California",
-      "C": "Stairway to Heaven",
-      "D": "Imagine"
+      "A": "Jugal Hansraj, Ananya Pandey, Jaaved Jaaferi",
+      "B": "Jimmy Shergil, Ananya Pandey, Arshad Warsi",
+      "C": "Sidharth Malhotra, Tara Sutaria, Sanjay Dutt",
+      "D": "Sonu Sood, Janhvi Kapoor, Rajpal Yadav"
+    },
+    "correct": "B",
+    "followup": "/static/videoplayback.mp4"
+  },
+  {
+    "id": 6,
+    "mode": "video",
+    "question": "Guess the Song-Movie Pair",
+    "video": "/static/dhurandhar.mp4",
+    "options": {
+      "A": "Ishq Jalakar: Dhurandhar",
+      "B": "Janaab-e-ali: Dhurandhar",
+      "C": "Ishq Jalakar: War",
+      "D": "Tum Hi Ho: Aashqui 2"
     },
     "correct": "A",
-    "followup": "/static/jojofollow.mp4"
+    "followup": "/static/dhurandhar_ws.mp4"
   },
   {
-    "id": 3,
-    "mode": "rapid",
-    "question": "What is the capital of France?",
+    "id": 7,
+    "mode": "video",
+    "question": "Guess the Song-Movie Pair",
+    "video": "/static/ChayiyaChayiya.mp4",
     "options": {
-      "A": "London",
-      "B": "Berlin",
-      "C": "Paris",
-      "D": "Madrid"
+      "A": "Chayiya Chayiya: Dil Wali Dulhaniya Le Jaayenge",
+      "B": "Dil Se Re: Dil Se",
+      "C": "Tujhe Dekha Toh: DDLJ",
+      "D": "Chayiya Chayiya: Dil Se"
     },
-    "correct": "C"
+    "correct": "D",
+    "followup": "/static/ChayiyaChayiya_ws.mp4"
   },
   {
-    "id": 4,
-    "mode": "rapid",
-    "question": "Who wrote 'Romeo and Juliet'?",
+    "id": 8,
+    "mode": "video",
+    "question": "Guess the Song-Movie Pair",
+    "video": "/static/LondonThumakda.mp4",
     "options": {
-      "A": "Charles Dickens",
-      "B": "William Shakespeare",
-      "C": "Jane Austen",
-      "D": "Mark Twain"
+      "A": "London Thumakda: Tanu Weds Manu",
+      "B": "London Thumakda: Queen",
+      "C": "Hungama Ho Gaya: Queen",
+      "D": "Navrai Majhi: English Vinglish"
     },
-    "correct": "B"
+    "correct": "B",
+    "followup": "/static/LondonThumakda_ws.mp4"
   },
   {
-    "id": 5,
-    "mode": "rapid",
-    "question": "What is the largest planet in our solar system?",
+    "id": 9,
+    "mode": "video",
+    "question": "Guess the Song-Movie Pair",
+    "video": "/static/LoseMyMind.mp4",
     "options": {
-      "A": "Mars",
-      "B": "Saturn",
-      "C": "Jupiter",
-      "D": "Neptune"
+      "A": "Lose My Mind: F1 The Movie",
+      "B": "Lose My Mind: Ford vs. Ferrari",
+      "C": "Drive: F1 The Movie",
+      "D": "War Pigs: Gran Turismo"
     },
-    "correct": "C"
+    "correct": "A",
+    "followup": "/static/LoseMyMind_ws.mp4"
+  },
+  {
+    "id": 10,
+    "mode": "video",
+    "question": "Guess the Song-Movie Pair",
+    "video": "/static/AllTheStars_ws.mp4",
+    "options": {
+      "A": "Pray For Me: Black Panther",
+      "B": "All The Stars: Avengers: Endgame",
+      "C": "All The Stars: Black Panther",
+      "D": "Sunflower: Spider-Man"
+    },
+    "correct": "C",
+    "followup": "/static/AllTheStars.mp4"
+  },
+  {
+    "id": 11,
+    "mode": "audio",
+    "question": "Guess the Song - Singer Pair",
+    "audio": "/static/AudioTheWeeknd.m4a",
+    "options": {
+      "A": "Starboy - The Weeknd",
+      "B": "Blinding Lights - Bruno Mars",
+      "C": "Blinding Lights - The Weeknd",
+      "D": "Uptown Funk - Mark Ronson"
+    },
+    "correct": "C",
+    "followup": "/static/BlindingLights.mp4"
+  },
+  {
+    "id": 12,
+    "mode": "audio",
+    "question": "Guess the Song - Singer Pair",
+    "audio": "/static/Enemyaudio.m4a",
+    "options": {
+      "A": "Believer - Imagine Dragons",
+      "B": "Enemy - Imagine Dragons ft. JID",
+      "C": "Enemy - Ed Sheeran",
+      "D": "Closer - The Chainsmokers"
+    },
+    "correct": "B",
+    "followup": "/static/Enemy.mp4"
+  },
+  {
+    "id": 13,
+    "mode": "audio",
+    "question": "Guess the Song - Singer Pair",
+    "audio": "/static/NightChanges.m4a",
+    "options": {
+      "A": "Night Changes - One Direction",
+      "B": "Night Changes - Harry Styles",
+      "C": "Story of My Life - One Direction",
+      "D": "As It Was - Harry Styles"
+    },
+    "correct": "A",
+    "followup": "/static/NightChanges.mp4"
+  },
+  {
+    "id": 14,
+    "mode": "audio",
+    "question": "Guess the Song - Singer Pair",
+    "audio": "/static/HallOfFame.m4a",
+    "options": {
+      "A": "Superheroes - The Script",
+      "B": "Hall of Fame - Coldplay",
+      "C": "Radioactive - Imagine Dragons",
+      "D": "Hall of Fame - The Script ft. will.i.am"
+    },
+    "correct": "D",
+    "followup": "/static/HallOfFame.mp4"
+  },
+  {
+    "id": 15,
+    "mode": "audio",
+    "question": "Guess the Song - Singer Pair",
+    "audio": "/static/Dosti.m4a",
+    "options": {
+      "A": "Tere Jaisa Yaar Kahan - Kishore Kumar",
+      "B": "Yeh Dosti - Kishore Kumar & Manna Dey",
+      "C": "Yeh Dosti - Mohammed Rafi",
+      "D": "Zindagi Ek Safar - Kishore Kumar"
+    },
+    "correct": "B",
+    "followup": "/static/Dosti.mp4"
+  },
+  {
+    "id": 16,
+    "mode": "rapid",
+    "question": "Buff, lonely guy plays GTA: Pakistan Edition"
+  },
+  {
+    "id": 17,
+    "mode": "rapid",
+    "question": "Two old guys beat up an orphan"
+  },
+  {
+    "id": 18,
+    "mode": "rapid",
+    "question": "Rich, emo kid throws money at his problems"
+  },
+  {
+    "id": 19,
+    "mode": "rapid",
+    "question": "Rich guy goes on a three-hour killing spree because his dad didn't hug him enough as a child."
+  },
+  {
+    "id": 20,
+    "mode": "rapid",
+    "question": "The Lion King, but with better technology and fewer catchy songs."
+  },
+  {
+    "id": 21,
+    "mode": "rapid",
+    "question": "An angry senior citizen goes back to Pakistan to remind them he can still pull things out of the ground"
+  },
+  {
+    "id": 22,
+    "mode": "rapid",
+    "question": "A group of grieving adults use a time machine to steal jewelry from their past selves"
+  },
+  {
+    "id": 23,
+    "mode": "rapid",
+    "question": "Two gym bros with amazing hair play hide-and-seek across the world over a science project"
+  },
+  {
+    "id": 24,
+    "mode": "rapid",
+    "question": "A dead woman uses her 8-year-old daughter as a Tinder agent to reunite her husband with the girl he friend-zoned in college"
+  },
+  {
+    "id": 25,
+    "mode": "rapid",
+    "question": "A depressed scientist builds a giant spicy ball and then gets surprised when people actually decide to use it"
   }
 ]

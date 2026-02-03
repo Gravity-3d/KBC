@@ -2,6 +2,7 @@ import os
 import random
 import math
 from PIL import Image
+import glob
 
 
 def process_batch_randomly_balanced(image_paths, output_folder):
@@ -109,15 +110,14 @@ def process_batch_randomly_balanced(image_paths, output_folder):
 if __name__ == "__main__":
 
     # 1. Define Output Path
-    out_dir = "./static"
+    out_dir = "./static/imgout"
 
     # 2. Define Input (Simulating an array of files)
     # In a real scenario, you might use: glob.glob("folder/*.jpg")
 
     # Let's create dummy files for demonstration so you can run this immediately
-    input_files_list = ["C:/Users/Lenovo/Pictures/Screenshots/Screenshot 2026-01-28 105329.png",
-                        "C:/Users/Lenovo/Pictures/Screenshots/Screenshot 2026-01-28 105421.png",
-                        "C:/Users/Lenovo/Pictures/Screenshots/Screenshot 2026-01-28 105451.png"]
+    input_files_list = glob.glob("static/celebrity_whole/*.png")
+    #print(f"Input files: {input_files_list}")
 
 
     process_batch_randomly_balanced(input_files_list, out_dir)
